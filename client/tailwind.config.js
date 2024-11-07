@@ -1,11 +1,7 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+  module.exports = {
   // NOTE: Update this to include the paths to all of your component files.
-  content: [
-    "./app/**/*.{js,jsx,ts,tsx}",
-    "./components/**/*.{js,jsx,ts,tsx}",
-  ],
-  
+  content: ["./app/**/*.{js,jsx,ts,tsx}","./components/**/*.{js,jsx,ts,tsx}",],
   presets: [require("nativewind/preset")],
   theme: {
     extend: {
@@ -26,15 +22,15 @@ module.exports = {
         },
       },
       fontFamily: {
-        pthin: ["Poppins-Thin", "sans-serif"],
-        pextralight: ["Poppins-ExtraLight", "sans-serif"],
-        plight: ["Poppins-Light", "sans-serif"],
-        pregular: ["Poppins-Regular", "sans-serif"],
-        pmedium: ["Poppins-Medium", "sans-serif"],
-        psemibold: ["Poppins-SemiBold", "sans-serif"],
-        pbold: ["Poppins-Bold", "sans-serif"],
-        pextrabold: ["Poppins-ExtraBold", "sans-serif"],
-        pblack: ["Poppins-Black", "sans-serif"],
+        pthin: ["Prompt-Thin", "sans-serif"],
+        pextralight: ["Prompt-ExtraLight", "sans-serif"],
+        plight: ["Prompt-Light", "sans-serif"],
+        pregular: ["Prompt-Regular", "sans-serif"],
+        pmedium: ["Prompt-Medium", "sans-serif"],
+        psemibold: ["Prompt-SemiBold", "sans-serif"],
+        pbold: ["Prompt-Bold", "sans-serif"],
+        pextrabold: ["Prompt-ExtraBold", "sans-serif"],
+        pblack: ["Prompt-Black", "sans-serif"],
       },
     },
   },
