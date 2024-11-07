@@ -12,7 +12,7 @@ import { jwtConstants } from './constants';
   imports: [
     UsersModule,
     PassportModule,
-    JwtModule.register({
+    JwtModule.register({ 
       secret: jwtConstants.secret,
       signOptions: { expiresIn: '24h' },
     }),
@@ -22,4 +22,4 @@ import { jwtConstants } from './constants';
   controllers: [AuthController],
   exports: [AuthService],
 })
-export class AuthModule { }
+export class AuthModule { } 

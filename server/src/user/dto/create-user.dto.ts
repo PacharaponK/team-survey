@@ -2,7 +2,7 @@ import { IsNotEmpty, IsEmail } from 'class-validator';
 
 export class CreateUserDto {
     @IsNotEmpty({ "message": "Name field cannot be empty" })
-    name: string;
+    username: string;
 
     @IsEmail()
     email: string;

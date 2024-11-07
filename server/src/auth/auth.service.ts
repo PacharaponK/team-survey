@@ -7,36 +7,31 @@ import * as bcrypt from 'bcrypt';
 export class AuthService {
   constructor(private usersService: UsersService, private jwtService: JwtService) { }
 
-  async validateUser(email: string, password: string): Promise<any> {
-    const user = await this.usersService.findOne({ "email": email });
+  async validateUser(usernameOrEmail: string, password: string): Promise<any> {
+    const isEmail = usernameOrEmail.includes('@') && usernameOrEmail.includes('.com');
 
-    // console.log(await bcrypt.hash(password, 10));
-
-    // console.log(password, user.password)
-    // console.log(bcrypt.compare(password, user.password))
+    const user = isEmail
+      ? await this.usersService.findOne({ email: usernameOrEmail })
+      : await this.usersService.findOne({ username: usernameOrEmail });
 
     if (user && await bcrypt.compare(password, user.password)) {
-
       const { password, ...result } = user;
-
-      console.log( result)
       return result;
     }
     return null;
   }
 
   async login(user: any) {
-    // console.log(user);
     const payload = {
       user: {
         // id: user.user.id,
-        // name: user.name,
-        email: user.email,
-        created_at: user.created_at,
-        updated_at: user.updated_at
+        username: user.user.username,
+        email: user.user.email,
+        created_at: user.user.created_at,
+        updated_at: user.user.updated_at
       }
     };
-    // console.log({ payload });
+    console.log({ payload });
     // console.log({
     //   access_token: this.jwtService.sign(payload),
     // })

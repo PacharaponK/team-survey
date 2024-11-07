@@ -15,10 +15,9 @@ export class UsersService {
     return await this.usersRepository.findOne({ where: conditions });
   }
 
-  // async findOne(data: number | any): Promise<User | undefined> {
-  //   console.log(data.email)
-  //   return await this.usersRepository.findOne(data.email);
-  // }
+  async findByEmail(conditions: Partial<User>): Promise<User | undefined> {
+    return await this.usersRepository.findOne({ where: conditions });
+  }
 
   async create(data) {
     return await this.usersRepository.save(data).then(res => res).catch(e => console.log(e));
