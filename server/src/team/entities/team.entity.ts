@@ -13,7 +13,7 @@ export class Team {
     @JoinColumn()
     leader_id: User
 
-    @OneToMany(() => User, (user) => user.team_id)
+    @OneToMany(() => User, (user) => user.team)
     members_id: User[]
 
     @Column({ default: null, type: "datetime" })
