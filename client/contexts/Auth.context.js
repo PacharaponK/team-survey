@@ -10,6 +10,7 @@ const initialState = {
     user: null,
     isLoginPending: false,
     loginError: null,
+    role: null,
 };
 
 const updateJwt = async (jwt) => {
@@ -31,16 +32,17 @@ const ContextProvider = (props) => {
     const setLoginPending = (isLoginPending) => updateState({ isLoginPending });
     const setLoginSuccess = (isLoggedIn, user) => updateState({ isLoggedIn, user });
     const setLoginError = (loginError) => updateState({ loginError });
+    const setUserRole = (role) => updateState({ role });
 
     const handleLoginResult = (error, result) => {
         setLoginPending(false);
-        // console.log("result: ",result);
 
         if (result?.email) {
             if (result.access_token) {
                 updateJwt(result.access_token);
             }
             setLoginSuccess(true, result.email);
+            setUserRole(result.role.name);
         } else if (error) {
             setLoginError(error);
         }
