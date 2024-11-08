@@ -16,27 +16,34 @@ export class AuthService {
 
     if (user && await bcrypt.compare(password, user.password)) {
       const { password, ...result } = user;
+      console.log(result)
       return result;
     }
     return null;
   }
 
   async login(user: any) {
-    const payload = {
-      user: {
-        // id: user.user.id,
-        username: user.user.username,
-        email: user.user.email,
-        created_at: user.user.created_at,
-        updated_at: user.user.updated_at
-      }
-    };
-    console.log({ payload });
+    // console.log(user.user)
+    const payload = user.user
+    // const payload = {
+    //   user: {
+    //     id: user.user.id,
+    //     username: user.user.username,
+    //     email: user.user.email,
+    //     firstname: user.user.firstname,
+    //     lastname: user.user.lastname,
+    //     role: user.user.role,
+    //     created_at: user.user.created_at,
+    //     updated_at: user.user.updated_at
+    //   }
+    // };
+    // console.log({ payload });
     // console.log({
     //   access_token: this.jwtService.sign(payload),
     // })
     return {
       access_token: this.jwtService.sign(payload),
+      ...payload
     };
 
   }

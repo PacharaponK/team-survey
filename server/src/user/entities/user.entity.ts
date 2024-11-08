@@ -21,19 +21,19 @@ export class User {
     firstname: string
 
     @Column({ default: null })
-    lastname: string
+    lastname: string 
 
     @Column({ default: null, nullable: true })
     phone_number: string
 
     @OneToMany(() => Customer, (customer) => customer.dealer_id)
-    customers_id: Customer[];
+    customers: Customer[];
 
     @ManyToOne(() => Role, (role) => role.users_id)
-    role_id: Role
+    role: Role
 
     @ManyToOne(() => Team, (team) => team.members_id)
-    team_id: Team
+    team: Team
 
     @Column({ default: null, type: "datetime" })
     created_at?: Date;
