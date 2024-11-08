@@ -7,6 +7,8 @@ import { ConfigModule } from '@nestjs/config';
 import { Customer } from './customer/entities/customer.entity';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { APP_INTERCEPTOR } from '@nestjs/core';
+import { Role } from './role/entities/role.entity';
+import { Team } from './team/entities/team.entity';
 
 @Module({
   imports: [
@@ -16,7 +18,7 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database: './app.sqlite',
-      entities: [User, Customer],
+      entities: [User, Customer, Role, Team],
       synchronize: process.env.NODE_ENV != 'production',
     }),
     UsersModule,
