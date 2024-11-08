@@ -12,7 +12,10 @@ export class UsersService {
   ) { }
 
   async findOne(conditions: Partial<User>): Promise<User | undefined> {
-    return await this.usersRepository.findOne({ where: conditions });
+    return await this.usersRepository.findOne({
+      where: conditions,
+      relations: ['customers', 'role', 'team'],
+    });
   }
 
   async findByEmail(conditions: Partial<User>): Promise<User | undefined> {

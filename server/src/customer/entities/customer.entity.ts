@@ -18,7 +18,7 @@ export class Customer {
     @Column({ default: null, nullable: true })
     phone_number: string
 
-    @ManyToOne(() => User, (user) => user.customers_id)
+    @ManyToOne(() => User, (user) => user.customers)
     dealer_id: User
 
     @Column({ default: null, type: "datetime" })
