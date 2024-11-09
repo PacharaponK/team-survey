@@ -1,7 +1,8 @@
 import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
 import React, { useContext, useState } from "react";
 import { AuthContext, ContextProvider } from "../../contexts/Auth.context";
-import icons from "../../constants/icons"; // Assuming you have an icon path
+import icons from "../../constants/icons";
+import { router } from "expo-router";
 
 const SignIn = () => {
 	const [email, setEmail] = useState("");
@@ -12,6 +13,10 @@ const SignIn = () => {
 	const handleSignIn = () => {
 		login(email, password);
 	};
+
+	if (authContext?.state.isLoggedIn) {
+		router.replace("/home");
+	}
 
 	return (
 		<ContextProvider>
