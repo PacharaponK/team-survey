@@ -36,6 +36,8 @@ const ContextProvider = (props) => {
 
     const handleLoginResult = (error, result) => {
         setLoginPending(false);
+        console.log(result);
+        
 
         if (result?.email) {
             if (result.access_token) {
