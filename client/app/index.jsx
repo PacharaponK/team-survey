@@ -61,7 +61,7 @@ export default function Index() {
 					<View className="absolute bottom-14 w-full items-center z-10">
 						<CustomButton
 							title="เข้าสู่บ้านของเรา กดเลย!!"
-							handlePress={() => router.push("/sign-in")}
+							handlePress={() => router.push("/home")}
 							containerStyles="lg:w-2/4 w-3/4 bg-white rounded-full py-3 shadow-md"
 							textStyle="text-black font-pbold"
 						/>
