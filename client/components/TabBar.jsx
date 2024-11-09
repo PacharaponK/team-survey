@@ -18,7 +18,7 @@ const TabBar = ({ state, descriptors, navigation }) => {
 		),
 	};
 
-	const primaryColor = "#0891b2";
+	const primaryColor = "#FF10F0";
 	const greyColor = "#737373";
 	return (
 		<View style={styles.tabbar}>
