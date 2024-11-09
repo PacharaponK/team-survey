@@ -7,6 +7,7 @@
     extend: {
       colors: {
         primary: "#161622",
+        pink: "#be5bda",
         secondary: {
           DEFAULT: "#FF9C01",
           100: "#FF9001",
