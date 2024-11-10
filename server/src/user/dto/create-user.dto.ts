@@ -9,4 +9,11 @@ export class CreateUserDto {
 
     @IsNotEmpty({ "message": "Password field cannot be empty" })
     password: string;
+
+    @IsNotEmpty({ "message": "Firstname field cannot be empty" })
+    firstname: string
+
+    @IsNotEmpty({ "message": "Lastname field cannot be empty" })
+    lastname: string
+
 }

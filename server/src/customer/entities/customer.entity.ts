@@ -1,5 +1,5 @@
 import { User } from "src/user/entities/user.entity";
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()
 export class Customer {
@@ -12,19 +12,28 @@ export class Customer {
     @Column({ nullable: false })
     lastname: string
 
-    @Column()
-    age: number
+    @Column({ default: null })
+    address: string
+
+    @Column({ default: null, unique: true })
+    identification_number: string
 
     @Column({ default: null, nullable: true })
     phone_number: string
 
-    @ManyToOne(() => User, (user) => user.customers)
-    dealer_id: User
+    @Column({ default: null, nullable: true })
+    profile_url: string
 
-    @Column({ default: null, type: "datetime" })
+    @Column({ default: null })
+    status: string
+
+    @ManyToOne(() => User, (user) => user.customers)
+    dealer: User
+
+    @CreateDateColumn({ type: "datetime" })
     created_at?: Date;
 
-    @Column({ default: null, type: "datetime" })
+    @UpdateDateColumn({ type: "datetime" })
     updated_at?: Date;
 }
 
