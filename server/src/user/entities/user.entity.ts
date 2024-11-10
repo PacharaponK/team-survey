@@ -1,7 +1,7 @@
 import { Customer } from "src/customer/entities/customer.entity";
 import { Role } from "src/role/entities/role.entity";
 import { Team } from "src/team/entities/team.entity";
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, CreateDateColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()
 export class User {
@@ -21,12 +21,15 @@ export class User {
     firstname: string
 
     @Column({ default: null })
-    lastname: string 
+    lastname: string
 
     @Column({ default: null, nullable: true })
     phone_number: string
 
-    @OneToMany(() => Customer, (customer) => customer.dealer_id)
+    @Column({ default: null, nullable: true })
+    profile_url: string
+
+    @OneToMany(() => Customer, (customer) => customer.dealer)
     customers: Customer[];
 
     @ManyToOne(() => Role, (role) => role.users_id)
@@ -35,10 +38,10 @@ export class User {
     @ManyToOne(() => Team, (team) => team.members_id)
     team: Team
 
-    @Column({ default: null, type: "datetime" })
+    @CreateDateColumn({ type: "datetime" })
     created_at?: Date;
 
-    @Column({ default: null, type: "datetime" })
+    @UpdateDateColumn({ type: "datetime" })
     updated_at?: Date;
 }
 

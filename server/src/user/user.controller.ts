@@ -6,10 +6,9 @@ import { JwtAuthGuard } from 'src/auth/guard/jwt-auth.guard';
 export class UsersController {
   constructor(private readonly usersService: UsersService) { }
 
-
   @UseGuards(JwtAuthGuard)
   @Get('profile')
   async getProfile(@Body() data: any) {
-    return this.usersService.findByEmail(data.user);
+    return this.usersService.getProfile(data);
   }
 }
