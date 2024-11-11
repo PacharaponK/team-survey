@@ -29,7 +29,7 @@ export class Customer {
 
     @ManyToOne(() => User, (user) => user.customers)
     dealer: User
-
+ 
     @CreateDateColumn({ type: "datetime" })
     created_at?: Date;
 
