@@ -2,9 +2,11 @@ import React from "react";
 import { View, Text, Image, FlatList } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
-import user from "../../constants/mocks";
+import data from "../../constants/mocks";
 
 const Home = () => {
+	const user = data.user;
+
 	const activities = [
 		{
 			id: "1",

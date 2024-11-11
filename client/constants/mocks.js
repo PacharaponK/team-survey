@@ -31,4 +31,136 @@ const user = {
     updated_at: new Date(),
 };
 
-export default user;
+const exploreData = [
+    {
+        id: "1",
+        count: 100,
+        icon: "emoji-happy",
+        title: "ลูกค้าที่ซื้อสินค้า",
+        colorStyle: "bg-green-500",
+        containerStyle: "my-4",
+        iconStyle: "Entypo"
+    },
+    {
+        id: "2",
+        count: 100,
+        icon: "emoji-happy",
+        title: "ลูกค้าที่ซื้อสินค้า",
+        colorStyle: "bg-green-500",
+        containerStyle: "m-4",
+        iconStyle: "Entypo"
+    },
+    {
+        id: "3",
+        count: 100,
+        icon: "emoji-happy",
+        title: "ลูกค้าที่ซื้อสินค้า",
+        colorStyle: "bg-green-500",
+        containerStyle: "my-4",
+        iconStyle: "Entypo"
+    },
+    {
+        id: "4",
+        count: 200,
+        icon: "emoji-neutral",
+        title: "ลูกค้าที่ยังไม่ตัดสินใจ",
+        colorStyle: "bg-yellow-500",
+        containerStyle: "m-4",
+        iconStyle: "Entypo"
+    },
+    {
+        id: "5",
+        count: 300,
+        icon: "emoji-sad",
+        title: "ลูกค้าที่ไม่ซื้อสินค้า",
+        colorStyle: "bg-red-400",
+        containerStyle: "my-4",
+        iconStyle: "Entypo"
+    },
+];
+
+const team = [
+    {
+        id: "1",
+        name: "สุดยอดทางพร้าว",
+        description: "ไม่ซื้อไม่ว่าเเต่อย่ามองหน้าได้หม้ายๆๆๆๆๆๆๆๆ",
+        pictureURL: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTC7MROhxo9IODNYmZiyyijIdthqliz8CZVLw&s",
+        leader_name: "Sek Loso",
+        worker: [
+            {
+                id: "1",
+                name: "John Doe",
+                role: "worker",
+            },
+            {
+                id: "2",
+                name: "John Doe",
+                role: "worker",
+            },
+            {
+                id: "3",
+                name: "John Doe",
+                role: "worker",
+            },
+        ],
+        customers: "10000",
+        colorStyle: "bg-green-500",
+        containerStyle: "my-4",
+    },
+    {
+        id: "2",
+        name: "สุดยอดทางพร้าว",
+        description: "ไม่ซื้อไม่ว่าเเต่อย่ามองหน้าได้หม้ายๆๆๆๆๆๆๆๆ",
+        pictureURL: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTC7MROhxo9IODNYmZiyyijIdthqliz8CZVLw&s",
+        leader_name: "Sek Loso",
+        worker: [
+            {
+                id: "1",
+                name: "John Doe",
+                role: "worker",
+            },
+            {
+                id: "2",
+                name: "John Doe",
+                role: "worker",
+            },
+            {
+                id: "3",
+                name: "John Doe",
+                role: "worker",
+            },
+        ],
+        customers: "10000",
+        colorStyle: "bg-green-500",
+        containerStyle: "my-4",
+    },
+    {
+        id: "3",
+        name: "สุดยอดทางพร้าว",
+        description: "ไม่ซื้อไม่ว่าเเต่อย่ามองหน้าได้หม้ายๆๆๆๆๆๆๆๆ",
+        pictureURL: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTC7MROhxo9IODNYmZiyyijIdthqliz8CZVLw&s",
+        leader_name: "Sek Loso",
+        worker: [
+            {
+                id: "1",
+                name: "John Doe",
+                role: "worker",
+            },
+            {
+                id: "2",
+                name: "John Doe",
+                role: "worker",
+            },
+            {
+                id: "3",
+                name: "John Doe",
+                role: "worker",
+            },
+        ],
+        customers: "10000",
+        colorStyle: "bg-green-500",
+        containerStyle: "my-4",
+    },
+];
+
+export default {user, exploreData, team};
