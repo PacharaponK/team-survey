@@ -10,6 +10,6 @@ export class Role {
     name: string
 
     @OneToMany(() => User, (user) => user.role)
-    users_id: User[]
+    users: User[]
 }
 
