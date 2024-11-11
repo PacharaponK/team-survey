@@ -1,0 +1,39 @@
+{
+    "firstname": "admin01",
+    "lastname": "admin01",
+    "username": "admin01",
+    "email": "admin01@example.com",
+    "password": "admin01"
+}
+
+{
+    "firstname": "team-leader-01",
+    "lastname": "team-leader-01",
+    "username": "team-leader-01",
+    "email": "team-leader-01@example.com",
+    "password": "team-leader-01"
+}
+
+{
+    "firstname": "team-leader-02",
+    "lastname": "team-leader-02",
+    "username": "team-leader-02",
+    "email": "team-leader-02@example.com",
+    "password": "team-leader-02"
+}
+
+{
+    "firstname": "team-worker-01",
+    "lastname": "team-worker-01",
+    "username": "team-worker-01",
+    "email": "team-worker-01@example.com",
+    "password": "team-worker-01"
+}
+
+{
+    "firstname": "team-worker-02",
+    "lastname": "team-worker-02",
+    "username": "team-worker-02",
+    "email": "team-worker-02@example.com",
+    "password": "team-worker-02"
+}
