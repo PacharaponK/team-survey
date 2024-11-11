@@ -11,10 +11,10 @@ export class Team {
 
     @OneToOne(() => User)
     @JoinColumn()
-    leader_id: User
+    leader: User
 
     @OneToMany(() => User, (user) => user.team)
-    members_id: User[]
+    members: User[]
 
     @CreateDateColumn({ type: "datetime" })
     created_at?: Date;

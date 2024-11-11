@@ -32,10 +32,10 @@ export class User {
     @OneToMany(() => Customer, (customer) => customer.dealer)
     customers: Customer[];
 
-    @ManyToOne(() => Role, (role) => role.users_id)
+    @ManyToOne(() => Role, (role) => role.users)
     role: Role
 
-    @ManyToOne(() => Team, (team) => team.members_id)
+    @ManyToOne(() => Team, (team) => team.members)
     team: Team
 
     @CreateDateColumn({ type: "datetime" })
