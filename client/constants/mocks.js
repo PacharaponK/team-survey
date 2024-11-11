@@ -35,20 +35,20 @@ const exploreData = [
     {
         id: "1",
         count: 100,
-        icon: "emoji-happy",
+        icon: "addusergroup",
         title: "ลูกค้าที่ซื้อสินค้า",
-        colorStyle: "bg-green-500",
+        colorStyle: "bg-black-200",
         containerStyle: "my-4",
-        iconStyle: "Entypo"
+        iconStyle: "AntDesign"
     },
     {
         id: "2",
         count: 100,
-        icon: "emoji-happy",
+        icon: "user",
         title: "ลูกค้าที่ซื้อสินค้า",
-        colorStyle: "bg-green-500",
+        colorStyle: "bg-black-200",
         containerStyle: "m-4",
-        iconStyle: "Entypo"
+        iconStyle: "AntDesign"
     },
     {
         id: "3",
@@ -109,10 +109,10 @@ const team = [
     },
     {
         id: "2",
-        name: "สุดยอดทางพร้าว",
+        name: "ไม่หล่อพอทน",
         description: "ไม่ซื้อไม่ว่าเเต่อย่ามองหน้าได้หม้ายๆๆๆๆๆๆๆๆ",
-        pictureURL: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTC7MROhxo9IODNYmZiyyijIdthqliz8CZVLw&s",
-        leader_name: "Sek Loso",
+        pictureURL: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSalEj8tnk7AywBgsPErBHh2_8vFwc2yZty-mqmzy3t6pP_lN3WnokkH8ghoeFPZ13cs3g&usqp=CAU",
+        leader_name: "Add Carabao",
         worker: [
             {
                 id: "1",
@@ -136,10 +136,10 @@ const team = [
     },
     {
         id: "3",
-        name: "สุดยอดทางพร้าว",
+        name: "พอจนพอเลย",
         description: "ไม่ซื้อไม่ว่าเเต่อย่ามองหน้าได้หม้ายๆๆๆๆๆๆๆๆ",
-        pictureURL: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTC7MROhxo9IODNYmZiyyijIdthqliz8CZVLw&s",
-        leader_name: "Sek Loso",
+        pictureURL: "https://cdn-icons-png.freepik.com/256/17268/17268001.png?semt=ais_hybrid",
+        leader_name: "Nont Tanont",
         worker: [
             {
                 id: "1",

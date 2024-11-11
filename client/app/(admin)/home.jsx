@@ -71,17 +71,17 @@ const Home = () => {
 	];
 
 	const renderItem = ({ item }) => (
-		<View className="flex-row items-center py-2">
+		<View className="flex-row items-center py-2 px-2 rounded-2xl bg-blue-500 w-full mb-2">
 			<Image
 				source={{
 					uri: "https://i.pinimg.com/736x/f6/11/b6/f611b6e18590055497879a482e37a594.jpg",
 				}}
 				className="w-14 h-14 rounded-full mr-3"
 			/>
-			<View>
-				<Text className="font-pbold">{item.name}</Text>
-				<Text className="font-pmedium">{item.action}</Text>
-				<Text className="text-gray-500 font-pregular">{item.time}</Text>
+			<View className="">
+				<Text className="font-pbold text-white ">{item.name}</Text>
+				<Text className="font-pmedium text-white">{item.action}</Text>
+				<Text className="text-gray-100 font-pregular">{item.time}</Text>
 			</View>
 		</View>
 	);

@@ -12,10 +12,10 @@ const HorizontalCard = ({ item }) => {
 					className={`bg-gray-200 w-64 h-44 p-5 ${item.containerStyle} justify-start items-start rounded-xl shadow-md`}
 				>
 					<View
-						className={`w-10 h-10  ${item.colorStyle} mb-3 items-center justify-center rounded-full`}
+						className={`w-10 h-10 mb-3 items-center justify-center  rounded-full ${item.colorStyle}`}
 					>
-						{item.icon.style === "AntDesign" ? (
-							<AntDesign name={item.icon} size={26} />
+						{item.iconStyle === "AntDesign" ? (
+							<AntDesign name={item.icon} color={"white"} size={26} />
 						) : (
 							<Entypo name={item.icon} size={26} />
 						)}
