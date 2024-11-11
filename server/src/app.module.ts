@@ -10,6 +10,7 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
 import { Role } from './role/entities/role.entity';
 import { Team } from './team/entities/team.entity';
 import { CustomersModule } from './customer/customer.module';
+import { TeamsModule } from './team/team.module';
 
 @Module({
   imports: [
@@ -22,9 +23,10 @@ import { CustomersModule } from './customer/customer.module';
       entities: [User, Customer, Role, Team],
       synchronize: process.env.NODE_ENV != 'production',
     }),
-    UsersModule,
     AuthModule,
-    CustomersModule
+    UsersModule,
+    CustomersModule,
+    TeamsModule
   ],
   providers: [{
     provide: APP_INTERCEPTOR,

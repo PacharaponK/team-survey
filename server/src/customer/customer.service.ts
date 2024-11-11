@@ -42,7 +42,7 @@ export class CustomersService {
         where: {
           dealer: {
             team: {
-              leader_id: {
+              leader: {
                 id: leader_id
               }
             }
@@ -76,7 +76,7 @@ export class CustomersService {
       where: {
         dealer: {
           team: {
-            leader_id: {
+            leader: {
               id: user.id
             }
           },
