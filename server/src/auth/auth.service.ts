@@ -17,11 +17,11 @@ export class AuthService {
 
     if (user && await bcrypt.compare(password, user.password)) {
       const { password, ...result } = user;
-      console.log(result)
+      // console.log(result)
       return result;
     }
     return null;
-  } 
+  }
 
   async login(user: any) {
     const payload = user.user

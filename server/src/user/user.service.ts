@@ -37,11 +37,11 @@ export class UsersService {
     });
   }
 
-  async getProfile(payload: Partial<User>): Promise<User | undefined> {
+  async getProfile(user: Partial<User>): Promise<User | undefined> {
     return await this.usersRepository.findOne({
-      where: { email: payload.email },
+      where: { id: user.id },
       relations: ['role', 'team', 'customers']
-    });
+    }); 
   }
 
   async register(user: CreateUserDto) {

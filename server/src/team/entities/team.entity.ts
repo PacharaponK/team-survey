@@ -1,5 +1,5 @@
 import { User } from "src/user/entities/user.entity";
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, OneToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, OneToMany, CreateDateColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()
 export class Team {
@@ -16,10 +16,10 @@ export class Team {
     @OneToMany(() => User, (user) => user.team)
     members_id: User[]
 
-    @Column({ default: null, type: "datetime" })
+    @CreateDateColumn({ type: "datetime" })
     created_at?: Date;
 
-    @Column({ default: null, type: "datetime" })
+    @UpdateDateColumn({ type: "datetime" })
     updated_at?: Date;
 }
 

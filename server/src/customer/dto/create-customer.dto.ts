@@ -11,6 +11,6 @@ export class CreateCustomerDto {
     @IsNotEmpty({ "message": "Identification number field cannot be empty" })
     identification_number: string
 
-    @IsNotEmpty({ message: "Dealer ID cannot be empty" })
+    // @IsNotEmpty({ message: "Dealer ID cannot be empty" })
     dealer: User;
 }

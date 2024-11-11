@@ -1,0 +1,86 @@
+******
+GLOBAL 
+******
+
+AUTH
+
+   -POST
+
+    *auth/register
+       (required body field)
+            {
+                "firstname": <firstname>,
+                "lastname": <lastname>,
+                "username": <username>,
+                "email": <email>,
+                "password": <password>
+            }
+
+
+     *auth/login
+       (required body field)
+            {
+                "email": <email/username>,
+                "password": <password>
+            }
+
+
+USER
+
+    -GET (with jwt) (ไม่ต้องใส่ body)
+        *users/profile
+       
+
+
+*****
+ADMIN 
+*****
+
+CUSTOMER
+
+  -GET (แนบ jwt ของ admin user)
+
+    *customers/admin-access (query all customer)
+
+    *customers/admin-access?dealer_id=<dealer_id>
+
+    *customers/admin-access?team_id=<team_id>
+
+    *customers/admin-access?leader_id=<leader_id>
+
+
+***********
+TEAM-LEADER 
+***********
+
+CUSTOMER
+
+  -GET (แนบ jwt ของ team-leader user)
+
+    *customers/team-leader-access (query customer ของ team_leader ที่ทำการ request)
+
+    *customers/team-leader-access?dealer_id=<dealer_id>
+
+
+***********
+TEAM-WORKER
+***********
+
+CUSTOMER
+
+  -GET (แนบ jwt ของ team-worker user)
+
+    *customers/team-worker-access (query customer ของ team_worker ที่ทำการ request)
+
+    *customers/team-worker-access?id_card=<id_card>
+
+  -POST (แนบ jwt ของ team-worker user)
+
+    *customers/register 
+        (required body field)
+	     {
+    		"firstname": <firstname>,
+    		"lastname": <lastname>,
+    		"identification_number": <identification_number>
+        }
+ 
