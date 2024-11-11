@@ -18,7 +18,7 @@ const Profile = () => {
 					<Text className="text-2xl font-psemibold mt-4  text-gray-800">
 						{user.username}
 					</Text>
-					<Text className="text-center text-xl text-gray-600 px-4  font-pregular">
+					<Text className="text-center text-xl text-gray-600 px-4 font-pregular">
 						{user.firstname} {user.lastname}
 					</Text>
 					<Text className="font-pregular text-lg mb-2 text-gray-600 ">
