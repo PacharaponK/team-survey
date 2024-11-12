@@ -25,7 +25,15 @@ const AdminProfile = () => {
 					<Text className="font-pregular text-lg mb-2 text-gray-600 ">
 						{user.email}
 					</Text>
-					<View className=" rounded-2xl bg-[#FFB6C1] justify-start items-center py-3 mt-5 px-8 bg-opacity-20">
+					<View className="bg-blue-500 w-full h-full justify-start items-center rounded-3xl mt-3 p-4">
+						<View className="flex-row ">
+							<View className="bg-white h-32 w-32 rounded-xl" />
+							<View className="bg-white h-32 w-32 rounded-xl mx-3" />
+							<View className="bg-white h-32 w-32 rounded-xl" />
+						</View>
+					</View>
+
+					{/* <View className=" rounded-2xl bg-[#FFB6C1] justify-start items-center py-3 mt-5 px-8 bg-opacity-20">
 						<View className="flex-row gap-20">
 							<View className="items-center">
 								<Entypo name="emoji-happy" size={26} />
@@ -40,7 +48,7 @@ const AdminProfile = () => {
 								<Text className="font-pmedium">100 คน</Text>
 							</View>
 						</View>
-					</View>
+					</View> */}
 				</SafeAreaView>
 			</View>
 		</>
