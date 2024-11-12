@@ -4,7 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import mocks from "../../constants/mocks";
 import { AntDesign, Entypo } from "@expo/vector-icons";
 
-const Profile = () => {
+const AdminProfile = () => {
 	const user = mocks.user;
 	return (
 		<>
@@ -47,4 +47,4 @@ const Profile = () => {
 	);
 };
 
-export default Profile;
+export default AdminProfile;

@@ -4,16 +4,16 @@ import { AntDesign, Feather } from "@expo/vector-icons";
 
 const TabBar = ({ state, descriptors, navigation }) => {
 	const icons = {
-		home: (props) => (
+		admin_home: (props) => (
 			<AntDesign name="home" size={26} color={greyColor} {...props} />
 		),
-		explore: (props) => (
+		admin_explore: (props) => (
 			<Feather name="compass" size={26} color={greyColor} {...props} />
 		),
-		report: (props) => (
+		admin_report: (props) => (
 			<AntDesign name="barschart" size={26} color={greyColor} {...props} />
 		),
-		profile: (props) => (
+		admin_profile: (props) => (
 			<AntDesign name="user" size={26} color={greyColor} {...props} />
 		),
 	};

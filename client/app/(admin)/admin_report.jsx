@@ -2,7 +2,7 @@ import { View, Text } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const Report = () => {
+const AdminReport = () => {
 	const reportData = [
 		{
 			id: "1",
@@ -34,4 +34,4 @@ const Report = () => {
 	);
 };
 
-export default Report;
+export default AdminReport;

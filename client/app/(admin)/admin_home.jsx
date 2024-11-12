@@ -4,7 +4,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
 import data from "../../constants/mocks";
 
-const Home = () => {
+const AdminHome = () => {
 	const user = data.user;
 
 	const activities = [
@@ -157,4 +157,4 @@ const Home = () => {
 	);
 };
 
-export default Home;
+export default AdminHome;

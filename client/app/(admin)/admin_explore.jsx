@@ -5,7 +5,7 @@ import HorizontalCard from "../../components/HorizontalCard";
 import VerticalCard from "../../components/VerticalCard";
 import mocks from "../../constants/mocks";
 
-const Explore = () => {
+const AdminExplore = () => {
 	return (
 		<SafeAreaView className="bg-blue-500 flex-1 pt-4">
 			<View className="px-4 items-start ">
@@ -28,4 +28,4 @@ const Explore = () => {
 	);
 };
 
-export default Explore;
+export default AdminExplore;
