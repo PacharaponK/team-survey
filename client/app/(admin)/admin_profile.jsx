@@ -11,8 +11,8 @@ const AdminProfile = () => {
 			<View className="bg-white">
 				<ScrollView className="h-full">
 					<View className="absolute top-[-80px] left-0 w-full h-72 bg-blue-500 z-0 rounded-b-full" />
-					<SafeAreaView className=" justify-start items-center py-6 z-10">
-						<Text className="text-2xl font-pbold mb-4 text-white">
+					<SafeAreaView className=" justify-start items-center py-3 z-10">
+						<Text className="text-3xl font-pbold mb-4 text-white">
 							ข้อมูลส่วนตัว
 						</Text>
 						<Image

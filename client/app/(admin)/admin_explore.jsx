@@ -4,6 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import HorizontalCard from "../../components/HorizontalCard";
 import VerticalCard from "../../components/VerticalCard";
 import mocks from "../../constants/mocks";
+import { AntDesign } from "@expo/vector-icons";
 
 const AdminExplore = () => {
 	return (
