@@ -1,4 +1,10 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateTeamDto } from './create-team.dto';
+import { User } from 'src/user/entities/user.entity';
 
-export class UpdateTeamDto extends PartialType(CreateTeamDto) {}
+export class UpdateTeamDto {
+    name?: string;
+
+    leader?: User;
+
+    members?: number[]
+}
+

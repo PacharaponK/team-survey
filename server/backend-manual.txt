@@ -1,108 +1,126 @@
-&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-******
-GLOBAL (ได้ทุก role)
-******
+************************
+*      GLOBAL          *
+************************
 
-*AUTH
+AUTH
+------
+- POST /auth/register
+  - Description: ลงทะเบียนผู้ใช้ใหม่
+  - Body:
+    {
+      "firstname": <string>,
+      "lastname": <string>,
+      "username": <string>,
+      "email": <string>,
+      "password": <string>
+    }
+  - Notes: ทุกฟิลด์เป็นฟิลด์ที่จำเป็น อีเมลและชื่อผู้ใช้ต้องไม่ซ้ำกัน
 
-   -POST
-
-    *auth/register
-       (required body field)
-            {
-                "firstname": <firstname>,
-                "lastname": <lastname>,
-                "username": <username>,
-                "email": <email>,
-                "password": <password>
-            }
+- POST /auth/login
+  - Description: เข้าสู่ระบบผู้ใช้ที่มีอยู่
+  - Body:
+    {
+      "email": <string> (อีเมลหรือชื่อผู้ใช้),
+      "password": <string>
+    }
+  - Notes: สามารถใช้ได้ทั้งอีเมลหรือชื่อผู้ใช้
 
 
-     *auth/login
-       (required body field)
-            {
-                "email": <email/username>,
-                "password": <password>
-            }
+USER
+------
+- GET /users/profile
+  - Description: ดึงข้อมูลโปรไฟล์ของผู้ใช้
+  - Headers:
+    - Authorization: Bearer <jwt>
+  - Notes: จำเป็นต้องใช้ JWT สำหรับการตรวจสอบสิทธิ์ ไม่ต้องใส่ข้อมูลใน Body
 
 
-*USER
-
-    -GET (with jwt) (ไม่ต้องใส่ body)
-        *users/profile
-      
-&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-*****
-ADMIN 
-*****
+************************
+*       ADMIN          *
+************************
 
 CUSTOMER
-
-  -GET (แนบ jwt ของ admin user)
-
-    *customers/admin-access (query all customer)
-
-    *customers/admin-access?dealer_id=<dealer_id>
-
-    *customers/admin-access?team_id=<team_id>
-
-    *customers/admin-access?leader_id=<leader_id>
+------
+- GET /customers/admin-access
+  - Description: ดึงข้อมูลลูกค้าทั้งหมด
+  - Headers:
+    - Authorization: Bearer <jwt>
+  - Query Params (optional):
+    - dealer_id: <integer>
+    - team_id: <integer>
+    - leader_id: <integer>
+  - Notes: ต้องใช้ JWT และสามารถกรองลูกค้าโดยใช้ dealer_id, team_id หรือ leader_id ได้
 
 
 TEAM
+------
+- POST /teams
+  - Description: สร้างทีมใหม่
+  - Headers:
+    - Authorization: Bearer <jwt>
+  - Body:
+    {
+      "name": <string> (ต้องไม่ซ้ำกัน),
+      "leader": <integer> (leader_id),
+      "members": <array of integers> (รหัสสมาชิก)
+    }
+  - Notes: ต้องใช้ JWT ชื่อทีมต้องไม่ซ้ำกัน
 
-*TEAM
+- PUT /teams/:<team_id>
+  - Description: อัพเดทข้อมูลทีมที่มีอยู่
+  - Headers:
+    - Authorization: Bearer <jwt>
+  - Body:
+    {
+      "name": <string> (ต้องไม่ซ้ำกัน),
+      "leader": <integer> (leader_id),
+      "members": <array of integers> (รหัสสมาชิก)
+    }
+  - Notes: ต้องใช้ JWT ชื่อทีมต้องไม่ซ้ำกัน และสามารถอัพเดทฟิลด์ใดก็ได้
 
- -POST (with jwt)
+- GET /teams/:<team_id>
+  - Description: ค้นหาทีม
+  - Headers:
+    - Authorization: Bearer <jwt>
 
-    *teams
-       (required body field)
-          {
-              "name": <team_name> (name is unique),
-              "leader": <leader_id>,
-              "members": <members_id (array)>[]   ex. [1,2,3]
-          }
 
-&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-***********
-TEAM-LEADER 
-***********
+***************************
+*    TEAM-LEADER          *
+***************************
 
-*CUSTOMER
+CUSTOMER
+------
+- GET /customers/team-leader-access
+  - Description: ดึงข้อมูลลูกค้าที่เกี่ยวข้องกับหัวหน้าทีมที่ร้องขอข้อมูล
+  - Headers:
+    - Authorization: Bearer <jwt>
+  - Query Params (optional):
+    - dealer_id: <integer>
+  - Notes: จำเป็นต้องใช้ JWT ของผู้ใช้ที่เป็นหัวหน้าทีม และสามารถกรองข้อมูลตาม dealer_id ได้
 
-  -GET (แนบ jwt ของ team-leader user)
 
-    *customers/team-leader-access (query customer ของ team_leader ที่ทำการ request)
+***************************
+*    TEAM-WORKER          *
+***************************
 
-    *customers/team-leader-access?dealer_id=<dealer_id>
+CUSTOMER
+------
+- GET /customers/team-worker-access
+  - Description: ดึงข้อมูลลูกค้าที่สามารถเข้าถึงได้โดยทีมเวิร์คเกอร์ที่ร้องขอข้อมูล
+  - Headers:
+    - Authorization: Bearer <jwt>
+  - Query Params (optional):
+    - id_card: <string>
+  - Notes: จำเป็นต้องใช้ JWT ของผู้ใช้ที่เป็นทีมเวิร์คเกอร์ และสามารถกรองข้อมูลตาม id_card ได้
 
-&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-
-***********
-TEAM-WORKER
-***********
-
-*CUSTOMER
-
-  -GET (แนบ jwt ของ team-worker user)
-
-    *customers/team-worker-access (query customer ของ team_worker ที่ทำการ request)
-
-    *customers/team-worker-access?id_card=<id_card>
-
-  -POST (แนบ jwt ของ team-worker user)
-
-    *customers/register 
-      (required body field)
-	     {
-    		  "firstname": <firstname>,
-    		  "lastname": <lastname>,
-    		  "identification_number": <identification_number>
-       }
- 
-&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+- POST /customers/register
+  - Description: ลงทะเบียนลูกค้าใหม่
+  - Headers:
+    - Authorization: Bearer <jwt>
+  - Body:
+    {
+      "firstname": <string>,
+      "lastname": <string>,
+      "identification_number": <string>
+    }
+  - Notes: จำเป็นต้องใช้ JWT ของผู้ใช้ที่เป็นทีมเวิร์คเกอร์ ทุกฟิลด์ใน body ต้องใส่ข้อมูล
