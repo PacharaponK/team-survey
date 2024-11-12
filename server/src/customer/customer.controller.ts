@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, UseGuards, Query, Put } from '@nestjs/common';
 import { CustomersService } from './customer.service';
 import { CreateCustomerDto } from './dto/create-customer.dto';
 import { JwtAuthGuard } from 'src/auth/guard/jwt-auth.guard';
@@ -6,6 +6,7 @@ import { Roles } from 'src/auth/decorator/roles.decorator';
 import { RoleGuard } from 'src/auth/guard/role.guard';
 import { GetUser } from 'src/auth/decorator/get-user.decorator';
 import { User } from 'src/user/entities/user.entity';
+import { customerStatus } from './entities/customer.entity';
 
 @Controller('customers')
 export class CustomersController {
@@ -44,6 +45,13 @@ export class CustomersController {
   @Get('team-worker-access')
   async getWorkerCustomers(@GetUser() user: User, @Query('id_card') id_card = null) {
     return this.customersService.getAllCurrentTeamWorkerUserCustomersOrQuery(user, id_card);
+  }
+
+  @Roles('team_worker')
+  @UseGuards(JwtAuthGuard, RoleGuard)
+  @Put('team-worker-access/:id')
+  async updateCustomerStatusById(@Param('id') customerId: number, @Body('status') status: customerStatus) {
+    return this.customersService.updateCustomerStatusById(customerId, status);
   }
 
 

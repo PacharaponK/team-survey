@@ -4,6 +4,7 @@ import { Team } from './entities/team.entity';
 import { Repository } from 'typeorm';
 import { CreateTeamDto } from './dto/create-team.dto';
 import { UpdateTeamDto } from './dto/update-team.dto';
+import { User } from 'src/user/entities/user.entity';
 
 
 @Injectable()
@@ -51,14 +52,45 @@ export class TeamsService {
 
       return await this.teamsRepository.save(team);
     }
-
     catch (error) {
       throw new Error('Failed to create team: ' + error.message);
     }
   }
 
-  async getTeamById(id: number) {
-    return await this.teamsRepository.findOne({ where: { id: id }, relations: ['leader', 'members'] })
+  async getAllTeamsOrQuery(teamName: string) {
+    try {
+      if (teamName) {
+        return await this.teamsRepository.findOne({ where: { name: teamName }, relations: ['leader', 'members'] })
+      }
+      else {
+        return await this.teamsRepository.find({ relations: ['leader', 'members'] })
+      }
+    }
+
+    catch (error) {
+      throw new Error('Failed to query teams: ' + error.message);
+
+    }
   }
 
-}
+
+  // TEAM-LEADER-ACCESS
+  async getCurrentTeamLeaderTeam(user: User) {
+
+    try {
+
+      return await this.teamsRepository.findOne({
+        where: {
+          leader: { id: user.id },
+        },
+        relations: ['leader', 'members']
+      });
+    }
+
+    catch (error) {
+      throw new Error('Failed to query team: ' + error.message);
+
+    }
+  }
+
+} 
