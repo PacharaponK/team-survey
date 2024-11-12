@@ -34,43 +34,43 @@ const user = {
 const exploreData = [
     {
         id: "1",
-        count: 100,
+        count: "53,123 ทีม",
         icon: "addusergroup",
-        title: "ลูกค้าที่ซื้อสินค้า",
-        colorStyle: "bg-black-200",
-        containerStyle: "my-4",
+        title: "ทีมในระบบ",
+        colorStyle: "bg-violet-500",
+        containerStyle: "",
         iconStyle: "AntDesign"
     },
     {
         id: "2",
-        count: 100,
+        count: "246,325 คน",
         icon: "user",
-        title: "ลูกค้าที่ซื้อสินค้า",
+        title: "ลูกค้าทั้งหมด",
         colorStyle: "bg-black-200",
-        containerStyle: "m-4",
+        containerStyle: "",
         iconStyle: "AntDesign"
     },
     {
         id: "3",
-        count: 100,
+        count: "100 คน",
         icon: "emoji-happy",
         title: "ลูกค้าที่ซื้อสินค้า",
         colorStyle: "bg-green-500",
-        containerStyle: "my-4",
+        containerStyle: "",
         iconStyle: "Entypo"
     },
     {
         id: "4",
-        count: 200,
+        count: "200 คน",
         icon: "emoji-neutral",
         title: "ลูกค้าที่ยังไม่ตัดสินใจ",
         colorStyle: "bg-yellow-500",
-        containerStyle: "m-4",
+        containerStyle: "",
         iconStyle: "Entypo"
     },
     {
         id: "5",
-        count: 300,
+        count: "300 คน",
         icon: "emoji-sad",
         title: "ลูกค้าที่ไม่ซื้อสินค้า",
         colorStyle: "bg-red-400",

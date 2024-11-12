@@ -1,10 +1,11 @@
 import { View, Text, StatusBar, Image } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import user from "../../constants/mocks";
+import mocks from "../../constants/mocks";
 import { AntDesign, Entypo } from "@expo/vector-icons";
 
 const Profile = () => {
+	const user = mocks.user;
 	return (
 		<>
 			<View className="bg-white">

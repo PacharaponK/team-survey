@@ -8,13 +8,13 @@ import mocks from "../../constants/mocks";
 const Explore = () => {
 	return (
 		<SafeAreaView className="bg-blue-500 flex-1 pt-4">
-			<View className="px-4 items-start mb-5">
+			<View className="px-4 items-start ">
 				{/* <Image source={icons.team_survey} className="w-28 h-28" /> */}
 				<Text className="text-3xl font-pbold text-white">ระบบจัดการทีม</Text>
 				<HorizontalCard item={mocks.exploreData} />
 			</View>
 
-			<View className="flex-row items-center bg-gray-200 rounded-xl px-3 mx-4 mb-5 shadow-lg">
+			<View className="flex-row items-center bg-gray-200 rounded-xl px-3 mx-4 mb-4 shadow-lg">
 				<TextInput
 					placeholder="ค้นหาทีม"
 					placeholderTextColor="#9ca3af"
