@@ -54,7 +54,7 @@ CUSTOMER
 
 TEAM
 ------
-- POST /teams
+- POST /teams/admin-access
   - Description: สร้างทีมใหม่
   - Headers:
     - Authorization: Bearer <jwt>
@@ -66,7 +66,7 @@ TEAM
     }
   - Notes: ต้องใช้ JWT ชื่อทีมต้องไม่ซ้ำกัน
 
-- PUT /teams/:<team_id>
+- PUT /teams/admin-access/:<team_id>
   - Description: อัพเดทข้อมูลทีมที่มีอยู่
   - Headers:
     - Authorization: Bearer <jwt>
@@ -78,11 +78,24 @@ TEAM
     }
   - Notes: ต้องใช้ JWT ชื่อทีมต้องไม่ซ้ำกัน และสามารถอัพเดทฟิลด์ใดก็ได้
 
-- GET /teams/:<team_id>
-  - Description: ค้นหาทีม
+- GET /teams/admin-access
+  - Description: ค้นหาทีมทั้งหมด/หาโดยชื่อของทีม
   - Headers:
     - Authorization: Bearer <jwt>
+  - Query Params (optional):
+    - team_name: <string>
+  - Notes: ต้องใช้ JWT และสามารถกรองทีมโดยใช้ team_name ได้
 
+
+USER
+------
+- GET /users/admin-access
+  - Description: ดึงข้อมูลผู้ใช้งานทั้งหมด
+  - Headers:
+    - Authorization: Bearer <jwt>
+  - Query Params (optional):
+    - username: <string>
+  - Notes: ต้องใช้ JWT และสามารถกรองผู้ใช้งานโดยใช้ username ได้
 
 ***************************
 *    TEAM-LEADER          *
@@ -97,6 +110,15 @@ CUSTOMER
   - Query Params (optional):
     - dealer_id: <integer>
   - Notes: จำเป็นต้องใช้ JWT ของผู้ใช้ที่เป็นหัวหน้าทีม และสามารถกรองข้อมูลตาม dealer_id ได้
+
+
+TEAM
+------
+- GET /teams/team-leader-access
+  - Description: ดึงข้อมูลทีมของหัวหน้าทีมที่ร้องขอข้อมูล
+  - Headers:
+    - Authorization: Bearer <jwt>
+  - Notes: จำเป็นต้องใช้ JWT ของผู้ใช้ที่เป็นหัวหน้าทีม
 
 
 ***************************
@@ -123,4 +145,14 @@ CUSTOMER
       "lastname": <string>,
       "identification_number": <string>
     }
-  - Notes: จำเป็นต้องใช้ JWT ของผู้ใช้ที่เป็นทีมเวิร์คเกอร์ ทุกฟิลด์ใน body ต้องใส่ข้อมูล
+  - Notes: จำเป็นต้องใช้ JWT ของผู้ใช้ที่เป็นทีมเวิร์คเกอร์, ทุกฟิลด์ใน body ต้องใส่ข้อมูล
+
+- PUT /customers/team-worker-access/:<customer_id>
+  - Description: แก้ไขสถานะการสนใจสินค้าของลูกค้า
+  - Headers:
+    - Authorization: Bearer <jwt>
+  - Body:
+    {
+      "status": <enum> ("high", "medium", "low")
+    }
+  - Notes: จำเป็นต้องใช้ JWT ของผู้ใช้ที่เป็นทีมเวิร์คเกอร์ 

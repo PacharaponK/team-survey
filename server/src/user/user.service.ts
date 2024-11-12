@@ -13,6 +13,7 @@ export class UsersService {
     private usersRepository: Repository<User>,
   ) { }
 
+  // GLOBAL
   async getRoleById(id: number): Promise<Role> {
     try {
       const user = await this.usersRepository.findOne({
@@ -41,7 +42,7 @@ export class UsersService {
     return await this.usersRepository.findOne({
       where: { id: user.id },
       relations: ['role', 'team', 'customers']
-    }); 
+    });
   }
 
   async register(user: CreateUserDto) {
@@ -60,4 +61,23 @@ export class UsersService {
 
     return await this.usersRepository.save(user);
   }
-} 
+
+
+
+  // ADMIN
+  async getAllCustomersOrQuery(username: string) {
+    try {
+      if (username) {
+        return await this.usersRepository.findOne({ where: { username: username }, relations: ['team', 'role', 'customers'] })
+      }
+
+      else {
+        return await this.usersRepository.find({ relations: ['team', 'role', 'customers'] });
+      }
+    }
+    catch (error) {
+      throw new Error('Failed to query user: ' + error.message);
+    }
+  }
+
+}  

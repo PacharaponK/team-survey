@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateCustomerDto } from './dto/create-customer.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Customer } from './entities/customer.entity';
+import { Customer, customerStatus } from './entities/customer.entity';
 import { Repository } from 'typeorm';
 import { User } from 'src/user/entities/user.entity';
 
@@ -111,5 +111,18 @@ export class CustomersService {
         relations: ['dealer']
       })
     )
+  }
+
+  async updateCustomerStatusById(customerId: number, status: customerStatus) {
+    // return { customerId, status };
+    try {
+      const customerStatus = await this.customersRepository.findOne({ where: { id: customerId } });
+      customerStatus.status = status;
+      return await this.customersRepository.save(customerStatus);
+    }
+    catch (error) {
+      throw new Error('Failed to create team: ' + error.message);
+    }
+
   }
 }
