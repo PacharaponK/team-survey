@@ -1,11 +1,17 @@
 import { User } from "src/user/entities/user.entity";
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn } from "typeorm";
 
+export enum customerStatus {
+    HIGH = "high",
+    MEDIUM = "medium",
+    LOW = "low",
+}
+
 @Entity()
 export class Customer {
     @PrimaryGeneratedColumn('increment')
     id: number;
-
+ 
     @Column({ nullable: false })
     firstname: string
 
@@ -24,12 +30,12 @@ export class Customer {
     @Column({ default: null, nullable: true })
     profile_url: string
 
-    @Column({ default: null })
-    status: string
+    @Column({ type: 'text', default: null })
+    status: customerStatus
 
     @ManyToOne(() => User, (user) => user.customers)
     dealer: User
- 
+
     @CreateDateColumn({ type: "datetime" })
     created_at?: Date;
 
