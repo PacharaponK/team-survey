@@ -1,7 +1,7 @@
 import "../global.css";
 import { View, Text, FlatList } from "react-native";
 import React from "react";
-import { AntDesign, Entypo } from "@expo/vector-icons";
+import { AntDesign, Entypo, Ionicons } from "@expo/vector-icons";
 
 const HorizontalCard = ({ item }) => {
 	return (
