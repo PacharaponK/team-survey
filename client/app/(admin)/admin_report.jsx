@@ -43,10 +43,10 @@ const AdminReport = () => {
 					style={{}}
 				/>
 
-				<View className="px-4 bg-blue-500 mb-4">
+				<View className="px-4 pt-2 bg-blue-500 mb-4">
 					<Text className="text-3xl font-pbold text-gray-100">ค้นหา</Text>
 					<Text className="text-3xl font-pbold text-white">รายงานผลสำรวจ</Text>
-					<View className="flex-row items-center bg-gray-200 w-5/6 rounded-xl mt-2 mb-4 shadow-lg">
+					<View className="flex-row items-center bg-gray-200  rounded-xl mt-2 mb-4 shadow-lg">
 						<TextInput
 							placeholder="แบบไหนที่คุณต้องการ..."
 							placeholderTextColor="#9ca3af"
