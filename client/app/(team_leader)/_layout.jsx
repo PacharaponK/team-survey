@@ -9,37 +9,37 @@ const AdminLayout = () => {
 				<TabBar
 					{...props}
 					tabNames={{
-						home: "admin_home",
-						explore: "admin_explore",
-						report: "admin_report",
-						profile: "admin_profile",
+						home: "teamleader_home",
+						explore: "teamleader_explore",
+						report: "teamleader_report",
+						profile: "teamleader_profile",
 					}}
 				/>
 			)}
 		>
 			<Tabs.Screen
-				name="admin_home"
+				name="teamleader_home"
 				options={{
 					title: "Home",
 					headerShown: false,
 				}}
 			/>
 			<Tabs.Screen
-				name="admin_explore"
+				name="teamleader_explore"
 				options={{
 					title: "Explore",
 					headerShown: false,
 				}}
 			/>
 			<Tabs.Screen
-				name="admin_report"
+				name="teamleader_report"
 				options={{
 					title: "Report",
 					headerShown: false,
 				}}
 			/>
 			<Tabs.Screen
-				name="admin_profile"
+				name="teamleader_profile"
 				options={{
 					title: "Profile",
 					headerShown: false,

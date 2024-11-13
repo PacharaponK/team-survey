@@ -19,11 +19,11 @@ const SignIn = () => {
 	}
 
 	if (authContext?.state.role == "team_leader") {
-		router.replace("/admin_explore");
+		router.replace("/teamleader_home");
 	}
 
 	if (authContext?.state.role == "team_worker") {
-		router.replace("/admin_home");
+		router.replace("/teamworker_home");
 	}
 
 	return (

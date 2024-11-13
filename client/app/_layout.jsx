@@ -32,6 +32,8 @@ export default function RootLayout() {
 			<Stack>
 				<Stack.Screen name="index" options={{ headerShown: false }} />
 				<Stack.Screen name="(admin)" options={{ headerShown: false }} />
+				<Stack.Screen name="(team_leader)" options={{ headerShown: false }} />
+				<Stack.Screen name="(team_worker)" options={{ headerShown: false }} />
 				<Stack.Screen name="(auth)" options={{ headerShown: false }} />
 			</Stack>
 		</ContextProvider>

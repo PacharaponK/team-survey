@@ -2,18 +2,18 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import React from "react";
 import { AntDesign, Feather } from "@expo/vector-icons";
 
-const TabBar = ({ state, descriptors, navigation }) => {
+const TabBar = ({ state, descriptors, navigation, tabNames }) => {
 	const icons = {
-		admin_home: (props) => (
+		[tabNames.home]: (props) => (
 			<AntDesign name="home" size={26} color={greyColor} {...props} />
 		),
-		admin_explore: (props) => (
+		[tabNames.explore]: (props) => (
 			<Feather name="compass" size={26} color={greyColor} {...props} />
 		),
-		admin_report: (props) => (
+		[tabNames.report]: (props) => (
 			<AntDesign name="barschart" size={26} color={greyColor} {...props} />
 		),
-		admin_profile: (props) => (
+		[tabNames.profile]: (props) => (
 			<AntDesign name="user" size={26} color={greyColor} {...props} />
 		),
 	};
