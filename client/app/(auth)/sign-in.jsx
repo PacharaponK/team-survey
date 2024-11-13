@@ -14,8 +14,16 @@ const SignIn = () => {
 		login(email, password);
 	};
 
-	if (authContext?.state.isLoggedIn) {
-		router.replace("/home");
+	if (authContext?.state.role == "admin") {
+		router.replace("/admin_home");
+	}
+
+	if (authContext?.state.role == "team_leader") {
+		router.replace("/admin_explore");
+	}
+
+	if (authContext?.state.role == "team_worker") {
+		router.replace("/admin_home");
 	}
 
 	return (
