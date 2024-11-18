@@ -65,7 +65,7 @@ export class UsersService {
 
 
   // ADMIN
-  async getAllCustomersOrQuery(username: string) {
+  async getAllUsersOrQuery(username: string) {
     try {
       if (username) {
         return await this.usersRepository.findOne({ where: { username: username }, relations: ['team', 'role', 'customers'] })
@@ -77,6 +77,20 @@ export class UsersService {
     }
     catch (error) {
       throw new Error('Failed to query user: ' + error.message);
+    }
+  }
+
+ 
+
+  // TEAM-LEADER
+  async getAllCurrentTeamLeaderUsersOrQuery(user: User) {
+    try {
+
+      return await this.usersRepository.find({ where: { team: { leader: { id: user.id } } }, relations: ['team'] })
+
+    }
+    catch (error) {
+
     }
   }
 

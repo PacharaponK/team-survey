@@ -15,16 +15,25 @@ export class UsersController {
   @Get('profile')
   async getProfile(@GetUser() user: User) {
     return this.usersService.getProfile(user);
-  } 
+  }
 
 
   //ADMIN 
   @Roles('admin')
   @UseGuards(JwtAuthGuard, RoleGuard)
   @Get('admin-access')
-  async getAllUsers(@Query('username') username: string) {
-    return this.usersService.getAllCustomersOrQuery(username);
+  async getAllUsersOrQuery(@Query('username') username: string) {
+    return this.usersService.getAllUsersOrQuery(username);
   }
 
- 
+
+
+  // TEAM-LEADER-ACCESS
+  @Roles('team_leader')
+  @UseGuards(JwtAuthGuard, RoleGuard)
+  @Get('team-leader-access')
+  async getAllCurrentTeamLeaderUsersOrQuery(@GetUser() user: User) {
+    return this.usersService.getAllCurrentTeamLeaderUsersOrQuery(user);
+  }
+
 }

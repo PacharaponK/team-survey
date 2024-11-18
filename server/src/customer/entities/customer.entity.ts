@@ -11,7 +11,7 @@ export enum customerStatus {
 export class Customer {
     @PrimaryGeneratedColumn('increment')
     id: number;
- 
+
     @Column({ nullable: false })
     firstname: string
 
@@ -19,7 +19,16 @@ export class Customer {
     lastname: string
 
     @Column({ default: null })
-    address: string
+    province: string
+
+    @Column({ default: null })
+    district: string
+
+    @Column({ default: null })
+    sub_district: string
+
+    @Column({ default: null })
+    zip_code: string
 
     @Column({ default: null, unique: true })
     identification_number: string
@@ -30,7 +39,7 @@ export class Customer {
     @Column({ default: null, nullable: true })
     profile_url: string
 
-    @Column({ type: 'text', default: null })
+    @Column({ type: 'text', default: customerStatus.MEDIUM })
     status: customerStatus
 
     @ManyToOne(() => User, (user) => user.customers)

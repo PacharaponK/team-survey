@@ -49,7 +49,10 @@ CUSTOMER
     - dealer_id: <integer>
     - team_id: <integer>
     - leader_id: <integer>
-  - Notes: ต้องใช้ JWT และสามารถกรองลูกค้าโดยใช้ dealer_id, team_id หรือ leader_id ได้
+    - province: <string>
+    - district: <string>
+    - sub_district: <string>
+  - Notes: ต้องใช้ JWT และสามารถกรองลูกค้าโดยใช้ dealer_id, team_id, leader_id, province, district หรือ sub_district ได้
 
 
 TEAM
@@ -109,13 +112,25 @@ CUSTOMER
     - Authorization: Bearer <jwt>
   - Query Params (optional):
     - dealer_id: <integer>
-  - Notes: จำเป็นต้องใช้ JWT ของผู้ใช้ที่เป็นหัวหน้าทีม และสามารถกรองข้อมูลตาม dealer_id ได้
+    - province: <string>
+    - district: <string>
+    - sub_district: <string>
+  - Notes: จำเป็นต้องใช้ JWT ของผู้ใช้ที่เป็นหัวหน้าทีม และสามารถกรองข้อมูลตาม dealer_id, province, district หรือ sub_district ได้
 
 
 TEAM
 ------
 - GET /teams/team-leader-access
   - Description: ดึงข้อมูลทีมของหัวหน้าทีมที่ร้องขอข้อมูล
+  - Headers:
+    - Authorization: Bearer <jwt>
+  - Notes: จำเป็นต้องใช้ JWT ของผู้ใช้ที่เป็นหัวหน้าทีม
+
+
+USER
+------
+- GET /users/team-leader-access
+  - Description: ดึงข้อมูลสมาชิกในทีมของหัวหน้าทีมที่ร้องขอข้อมูล
   - Headers:
     - Authorization: Bearer <jwt>
   - Notes: จำเป็นต้องใช้ JWT ของผู้ใช้ที่เป็นหัวหน้าทีม
@@ -133,7 +148,10 @@ CUSTOMER
     - Authorization: Bearer <jwt>
   - Query Params (optional):
     - id_card: <string>
-  - Notes: จำเป็นต้องใช้ JWT ของผู้ใช้ที่เป็นทีมเวิร์คเกอร์ และสามารถกรองข้อมูลตาม id_card ได้
+    - province: <string>
+    - district: <string>
+    - sub_district: <string>
+  - Notes: จำเป็นต้องใช้ JWT ของผู้ใช้ที่เป็นทีมเวิร์คเกอร์ และสามารถกรองข้อมูลตาม id_card, province, district หรือ sub_district ได้
 
 - POST /customers/register
   - Description: ลงทะเบียนลูกค้าใหม่

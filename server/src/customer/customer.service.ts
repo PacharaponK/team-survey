@@ -23,55 +23,99 @@ export class CustomersService {
   }
 
   // ADMIN ACCESS
-  async getAllCustomersOrQuery(team_id: number, leader_id: number, dealer_id: number) {
-    if (team_id && !leader_id && !dealer_id) {
-      return await this.customersRepository.find({
-        where: {
-          dealer: {
-            team: {
-              id: team_id
-            }
-          }
-        },
-        relations: ['dealer']
-      });
-    }
+  async getAllCustomersOrQuery(team_id: number, leader_id: number, dealer_id: number, province: string, district: string, sub_district: string) {
 
-    else if (leader_id && !team_id && !dealer_id) {
+    try {
       return await this.customersRepository.find({
         where: {
-          dealer: {
-            team: {
-              leader: {
-                id: leader_id
+          ...(team_id && {
+            dealer: {
+              team: {
+                id: team_id
               }
             }
-          }
-        },
-        relations: ['dealer']
-      });
+          }),
+          ...(leader_id && {
+            dealer: {
+              team: {
+                leader: {
+                  id: leader_id
+                }
+              }
+            }
+          }),
+          ...(dealer_id && {
+            dealer: {
+              id: dealer_id
+            }
+          }),
+          ...(province && {
+            province: province
+          }),
+          ...(district && {
+            district: district
+          }),
+          ...(sub_district && {
+            province: sub_district
+          })
+        }
+      })
+    }
+    catch (error) {
+      throw new Error('Failed to fetch customers. Please try again later.');
     }
 
-    else if (dealer_id && !team_id && !leader_id) {
-      return await this.customersRepository.find({
-        where: {
-          dealer: {
-            id: dealer_id
-          }
-        },
-        relations: ['dealer']
-      });
-    }
-    else {
-      return await
-        this.customersRepository.find({ relations: ['dealer'] });
-    }
+    // if (team_id && !leader_id && !dealer_id) {
+    //   return await this.customersRepository.find({
+    //     where: {
+    //       dealer: {
+    //         team: {
+    //           id: team_id
+    //         }
+    //       }
+    //     },
+    //     relations: ['dealer']
+    //   });
+    // }
+
+    // else if (leader_id && !team_id && !dealer_id) {
+    //   return await this.customersRepository.find({
+    //     where: {
+    //       dealer: {
+    //         team: {
+    //           leader: {
+    //             id: leader_id
+    //           }
+    //         }
+    //       }
+    //     },
+    //     relations: ['dealer']
+    //   });
+    // }
+
+    // else if (dealer_id && !team_id && !leader_id) {
+    //   return await this.customersRepository.find({
+    //     where: {
+    //       dealer: {
+    //         id: dealer_id
+    //       }
+    //     },
+    //     relations: ['dealer']
+    //   });
+    // }
+    // else {
+    //   return await
+    //     this.customersRepository.find({ relations: ['dealer'] });
+    // }
 
   }
 
 
+
+
+
   // TEAM_LEADER ACCESS
-  async getAllCurrentTeamLeaderUserCustomersOrQuery(user: User, dealer_id?: number) {
+  async getAllCurrentTeamLeaderUserCustomersOrQuery(user: User, dealer_id: number, province: string, district: string, sub_district: string) {
     const query = {
       where: {
         dealer: {
@@ -79,9 +123,12 @@ export class CustomersService {
             leader: {
               id: user.id
             }
-          },
-          ...(dealer_id && { id: dealer_id })
-        }
+          }
+        },
+        ...(dealer_id && { id: dealer_id }),
+        ...(province && { province }),
+        ...(district && { district }),
+        ...(sub_district && { sub_district })
       },
       relations: ['dealer']
     };
@@ -91,7 +138,7 @@ export class CustomersService {
 
 
   // TEAM_WORKER ACCESS
-  async getAllCurrentTeamWorkerUserCustomersOrQuery(user: User, id_card: string) {
+  async getAllCurrentTeamWorkerUserCustomersOrQuery(user: User, id_card: string, province: string, district: string, sub_district: string) {
 
     return (id_card
       ?
@@ -106,7 +153,10 @@ export class CustomersService {
         where: {
           dealer: {
             id: user.id
-          }
+          },
+          ...(province && { province }),
+          ...(district && { district }),
+          ...(sub_district && { sub_district })
         },
         relations: ['dealer']
       })

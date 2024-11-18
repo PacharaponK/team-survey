@@ -25,8 +25,14 @@ export class CustomersController {
   @Roles('admin')
   @UseGuards(JwtAuthGuard, RoleGuard)
   @Get('admin-access')
-  async getAllCustomers(@Query('team_id') team_id = null, @Query('leader_id') leader_id = null, @Query('dealer_id') dealer_id = null) {
-    return this.customersService.getAllCustomersOrQuery(team_id, leader_id, dealer_id);
+  async getAllCustomersOrQuery(
+    @Query('team_id') team_id = null,
+    @Query('leader_id') leader_id = null,
+    @Query('dealer_id') dealer_id = null,
+    @Query('province') province = null,
+    @Query('district') district = null,
+    @Query('sub_district') sub_district = null) {
+    return this.customersService.getAllCustomersOrQuery(team_id, leader_id, dealer_id, province, district, sub_district);
   }
 
 
@@ -34,8 +40,13 @@ export class CustomersController {
   @Roles('team_leader', 'admin')
   @UseGuards(JwtAuthGuard, RoleGuard)
   @Get('team-leader-access')
-  async getAllCurrentTeamLeaderUserCustomersOrQuery(@GetUser() user: User, @Query('dealer_id') dealer_id = null) {
-    return this.customersService.getAllCurrentTeamLeaderUserCustomersOrQuery(user, dealer_id);
+  async getAllCurrentTeamLeaderUserCustomersOrQuery(
+    @GetUser() user: User,
+    @Query('dealer_id') dealer_id = null,
+    @Query('province') province = null,
+    @Query('district') district = null,
+    @Query('sub_district') sub_district = null) {
+    return this.customersService.getAllCurrentTeamLeaderUserCustomersOrQuery(user, dealer_id, province, district, sub_district);
   }
 
 
@@ -43,8 +54,13 @@ export class CustomersController {
   @Roles('team_worker')
   @UseGuards(JwtAuthGuard, RoleGuard)
   @Get('team-worker-access')
-  async getWorkerCustomers(@GetUser() user: User, @Query('id_card') id_card = null) {
-    return this.customersService.getAllCurrentTeamWorkerUserCustomersOrQuery(user, id_card);
+  async getWorkerCustomers(
+    @GetUser() user: User,
+    @Query('id_card') id_card = null,
+    @Query('province') province = null,
+    @Query('district') district = null,
+    @Query('sub_district') sub_district = null) {
+    return this.customersService.getAllCurrentTeamWorkerUserCustomersOrQuery(user, id_card, province, district, sub_district);
   }
 
   @Roles('team_worker')
@@ -53,6 +69,4 @@ export class CustomersController {
   async updateCustomerStatusById(@Param('id') customerId: number, @Body('status') status: customerStatus) {
     return this.customersService.updateCustomerStatusById(customerId, status);
   }
-
-
 }
