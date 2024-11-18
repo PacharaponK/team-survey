@@ -12,7 +12,7 @@ export class UsersService {
     @InjectRepository(User)
     private usersRepository: Repository<User>,
   ) { }
-
+ 
   // GLOBAL
   async getRoleById(id: number): Promise<Role> {
     try {
@@ -80,14 +80,12 @@ export class UsersService {
     }
   }
 
- 
+
 
   // TEAM-LEADER
   async getAllCurrentTeamLeaderUsersOrQuery(user: User) {
     try {
-
       return await this.usersRepository.find({ where: { team: { leader: { id: user.id } } }, relations: ['team'] })
-
     }
     catch (error) {
 

@@ -22,8 +22,8 @@ export class TeamsController {
   @Roles('admin')
   @UseGuards(JwtAuthGuard)
   @Put('admin-access/:id')
-  async updateTeam(@Param('id') id: number, @Body() data: UpdateTeamDto) {
-    return this.teamsService.updateTeam(id, data);
+  async updateTeamForAdmin(@Param('id') id: number, @Body() data: UpdateTeamDto) {
+    return this.teamsService.updateTeamForAdmin(id, data);
   }
 
   @Roles('admin')
@@ -41,5 +41,13 @@ export class TeamsController {
   async getCurrentTeamLeaderTeam(@GetUser() user: User) {
     return this.teamsService.getCurrentTeamLeaderTeam(user);
   }
+
+  @Roles('team_leader')
+  @UseGuards(JwtAuthGuard, RoleGuard)
+  @Put('team-leader-access')
+  async updateTeamForTeamLeader(@GetUser() user: User, @Body() payload: any) {
+    return this.teamsService.updateTeamForTeamLeader(user, payload);
+  }
+
 
 }

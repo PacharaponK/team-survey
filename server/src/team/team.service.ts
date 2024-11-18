@@ -1,9 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Team } from './entities/team.entity';
 import { Repository } from 'typeorm';
 import { CreateTeamDto } from './dto/create-team.dto';
-import { UpdateTeamDto } from './dto/update-team.dto';
 import { User } from 'src/user/entities/user.entity';
 
 
@@ -28,7 +27,7 @@ export class TeamsService {
     }
   }
 
-  async updateTeam(id: number, payload: any) {
+  async updateTeamForAdmin(id: number, payload: any) {
     try {
       const team = await this.teamsRepository.findOne({ where: { id }, relations: ['leader', 'members'] })
 
@@ -90,6 +89,31 @@ export class TeamsService {
     catch (error) {
       throw new Error('Failed to query team: ' + error.message);
 
+    }
+  }
+
+  async updateTeamForTeamLeader(user: User, payload: any) {
+    try {
+      const team = await this.teamsRepository.findOne({ where: { leader: { id: user.id } }, relations: ['leader', 'members'] })
+
+      if (!team) {
+        throw new HttpException('No team found for this user', HttpStatus.CREATED);
+      }
+
+      if (payload.name) {
+        team.name = payload.name;
+      }
+
+      if (payload.members) {
+        team.members = Array.from(new Set([...team.members.map(member => (member.id)), ...payload.members.map((id: number) => id)])).map((id: number) => ({ id }) as User);
+      }
+
+      return await this.teamsRepository.save(team);
+
+    }
+
+    catch (error) {
+      throw new HttpException('Error ', HttpStatus.CREATED);
     }
   }
 
