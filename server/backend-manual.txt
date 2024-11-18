@@ -65,7 +65,7 @@ TEAM
     {
       "name": <string> (ต้องไม่ซ้ำกัน),
       "leader": <integer> (leader_id),
-      "members": <array of integers> (รหัสสมาชิก)
+      "members": <array of integers> (รหัสสมาชิก (id))
     }
   - Notes: ต้องใช้ JWT ชื่อทีมต้องไม่ซ้ำกัน
 
@@ -77,7 +77,7 @@ TEAM
     {
       "name": <string> (ต้องไม่ซ้ำกัน),
       "leader": <integer> (leader_id),
-      "members": <array of integers> (รหัสสมาชิก)
+      "members": <array of integers> (รหัสสมาชิก (id))
     }
   - Notes: ต้องใช้ JWT ชื่อทีมต้องไม่ซ้ำกัน และสามารถอัพเดทฟิลด์ใดก็ได้
 
@@ -125,6 +125,17 @@ TEAM
   - Headers:
     - Authorization: Bearer <jwt>
   - Notes: จำเป็นต้องใช้ JWT ของผู้ใช้ที่เป็นหัวหน้าทีม
+
+- PUT /teams/team-leader-access
+  - Description: อัพเดทข้อมูลทีมของหัวหน้าทีมที่ร้องขอข้อมูล
+  - Headers:
+    - Authorization: Bearer <jwt>
+  - Body:
+    {
+      "name": <string> (ต้องไม่ซ้ำกัน),
+      "members": <array of integers> (รหัสสมาชิก (id))
+    }
+  - Notes: ต้องใช้ JWT ชื่อทีมต้องไม่ซ้ำกัน และสามารถอัพเดทฟิลด์ใดก็ได้
 
 
 USER
