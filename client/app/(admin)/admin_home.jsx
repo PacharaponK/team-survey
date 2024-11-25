@@ -3,8 +3,13 @@ import { View, Text, Image, FlatList } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
 import data from "../../constants/mocks";
+import useAx from "../../conf/useAx";
+import { getCurrentUser } from "../../conf/api";
 
 const AdminHome = () => {
+	const currentUser = useAx(getCurrentUser);
+	const { data: userData } = currentUser;
+
 	const user = data.user;
 
 	const activities = [
