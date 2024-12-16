@@ -35,14 +35,14 @@ export class TeamsController {
 
 
   // TEAM-LEADER-ACCESS
-  @Roles('team_leader')
+  @Roles('admin')
   @UseGuards(JwtAuthGuard, RoleGuard)
   @Get('team-leader-access')
   async getCurrentTeamLeaderTeam(@GetUser() user: User) {
     return this.teamsService.getCurrentTeamLeaderTeam(user);
   }
 
-  @Roles('team_leader')
+  @Roles('admin')
   @UseGuards(JwtAuthGuard, RoleGuard)
   @Put('team-leader-access')
   async updateTeamForTeamLeader(@GetUser() user: User, @Body() payload: any) {

@@ -39,3 +39,12 @@ export const createTeam = async (data) => {
         console.error(error);
     }
 }
+
+export const listTeam = async () => {
+    try {
+        const team = await ax.get("/teams/admin-access")
+        return team.data
+    } catch (error) {
+        console.error(error);
+    }
+}

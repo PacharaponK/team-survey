@@ -8,17 +8,17 @@ import {
 	TouchableOpacity,
 } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
-import { AntDesign } from "@expo/vector-icons";
+import { listTeam } from "../../conf/api";
+import useAx from "../../conf/useAx";
 
 const CreateTeam = () => {
 	const [teamName, setTeamName] = useState("");
 	const [leader, setLeader] = useState(null);
-	const [open, setOpen] = useState(false); // State to control dropdown visibility
+	const [open, setOpen] = useState(false);
+	const teamList = useAx(listTeam);
+	console.log(teamList.data);
 
-	const handleSubmit = () => {
-		// Handle form submission logic
-		console.log(`Team Name: ${teamName}, Team Leader: ${leader}`);
-	};
+	const handleSubmit = () => {};
 
 	return (
 		<View className="bg-blue-500 flex-1 pt-4">
