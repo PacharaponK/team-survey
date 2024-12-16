@@ -35,6 +35,7 @@ export default function RootLayout() {
 				<Stack.Screen name="(team_leader)" options={{ headerShown: false }} />
 				<Stack.Screen name="(team_worker)" options={{ headerShown: false }} />
 				<Stack.Screen name="(auth)" options={{ headerShown: false }} />
+				<Stack.Screen name="services/create_team" />
 			</Stack>
 		</ContextProvider>
 	);

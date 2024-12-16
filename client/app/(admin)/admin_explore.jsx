@@ -1,10 +1,18 @@
-import { View, Text, TextInput, Image, FlatList } from "react-native";
+import {
+	View,
+	Text,
+	TextInput,
+	Image,
+	FlatList,
+	TouchableOpacity,
+} from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import HorizontalCard from "../../components/HorizontalCard";
 import VerticalCard from "../../components/VerticalCard";
 import mocks from "../../constants/mocks";
 import { AntDesign } from "@expo/vector-icons";
+import { router } from "expo-router";
 
 const AdminExplore = () => {
 	return (
@@ -14,6 +22,15 @@ const AdminExplore = () => {
 				<Text className="text-3xl font-pbold text-white">ระบบจัดการทีม</Text>
 				<HorizontalCard item={mocks.exploreData} />
 			</View>
+			<TouchableOpacity
+				onPress={() => router.replace("/create_team")}
+				className="flex-row items-center justify-center h-16 px-3 mx-4 mb-4 bg-gray-200 rounded-3xl"
+			>
+				<AntDesign name={"pluscircle"} color={"black"} size={24} />
+				<Text className="text-2xl font-pbold px-4 mt-1 text-black">
+					สร้างทีม
+				</Text>
+			</TouchableOpacity>
 
 			<View className="flex-row items-center bg-gray-200 rounded-xl px-3 mx-4 mb-4 shadow-lg">
 				<TextInput

@@ -11,6 +11,7 @@ const SignIn = () => {
 	const { login } = authContext;
 
 	const handleSignIn = () => {
+		router.replace("/admin_explore");
 		login(email, password);
 	};
 

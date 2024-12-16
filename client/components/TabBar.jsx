@@ -22,64 +22,59 @@ const TabBar = ({ state, descriptors, navigation, tabNames }) => {
 	const greyColor = "#737373";
 	return (
 		<View style={styles.tabbar}>
-			{state.routes.map((route, index) => {
-				const { options } = descriptors[route.key];
-				const label =
-					options.tabBarLabel !== undefined
-						? options.tabBarLabel
-						: options.title !== undefined
-						? options.title
-						: route.name;
+			{state.routes
+				.filter((route) => !["create_team"].includes(route.name)) // กรอง route ที่ไม่ต้องการ
+				.map((route, index) => {
+					const { options } = descriptors[route.key];
+					const label =
+						options.tabBarLabel !== undefined
+							? options.tabBarLabel
+							: options.title !== undefined
+							? options.title
+							: route.name;
 
-				if (["_sitemap", "+not-found"].includes(route.name)) return null;
+					const isFocused = state.index === index;
 
-				const isFocused = state.index === index;
+					const onPress = () => {
+						const event = navigation.emit({
+							type: "tabPress",
+							target: route.key,
+							canPreventDefault: true,
+						});
 
-				const onPress = () => {
-					const event = navigation.emit({
-						type: "tabPress",
-						target: route.key,
-						canPreventDefault: true,
-					});
+						if (!isFocused && !event.defaultPrevented) {
+							navigation.navigate(route.name, route.params);
+						}
+					};
 
-					if (!isFocused && !event.defaultPrevented) {
-						navigation.navigate(route.name, route.params);
-					}
-				};
+					const onLongPress = () => {
+						navigation.emit({
+							type: "tabLongPress",
+							target: route.key,
+						});
+					};
 
-				const onLongPress = () => {
-					navigation.emit({
-						type: "tabLongPress",
-						target: route.key,
-					});
-				};
-
-				return (
-					<TouchableOpacity
-						key={route.name}
-						style={styles.tabbarItem}
-						accessibilityRole="button"
-						accessibilityState={isFocused ? { selected: true } : {}}
-						accessibilityLabel={options.tabBarAccessibilityLabel}
-						testID={options.tabBarTestID}
-						onPress={onPress}
-						onLongPress={onLongPress}
-					>
-						{icons[route.name]({
-							color: isFocused ? primaryColor : greyColor,
-						})}
-						<Text
-							className="font-pmedium"
-							style={{
-								color: isFocused ? primaryColor : greyColor,
-								fontSize: 11,
-							}}
+					return (
+						<TouchableOpacity
+							key={route.name}
+							style={styles.tabbarItem}
+							onPress={onPress}
+							onLongPress={onLongPress}
 						>
-							{label}
-						</Text>
-					</TouchableOpacity>
-				);
-			})}
+							{icons[route.name]({
+								color: isFocused ? primaryColor : greyColor,
+							})}
+							<Text
+								style={{
+									color: isFocused ? primaryColor : greyColor,
+									fontSize: 11,
+								}}
+							>
+								{label}
+							</Text>
+						</TouchableOpacity>
+					);
+				})}
 		</View>
 	);
 };
